@@ -12,12 +12,14 @@
     </div>
     
     <div class="space-y-6">
-        @foreach($jobs as $job)
-            <x-job-card-list :$job />
-        
-        @endforeach
-        
+        @if($jobs->isEmpty())
+            <div class="text-center text-gray-500">
+                <p class="text-lg font-semibold">You haven't posted any jobs yet.</p>
+            </div>
+        @else
+            @foreach($jobs as $job)
+                <x-job-card-list :$job />
+            @endforeach
+        @endif
     </div>
-    
-
 </x-layout>

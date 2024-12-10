@@ -2,7 +2,6 @@
 
 <x-panel class="flex gap-x-6 relative">
 
-    <!-- Employer logo and job details -->
     <div>
         <x-employer-logo :employer="$job->employer" />
     </div>
