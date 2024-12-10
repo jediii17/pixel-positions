@@ -17,14 +17,12 @@
         <p class="text-sm text-gray-400 mt-auto">{{ $job->salary }}</p>
     </div>
 
-    <!-- Job tags positioned at the top-right -->
     <div class="absolute top-2 right-2">
         @foreach($job->tags as $tag)
             <x-tag :$tag />
         @endforeach
     </div>
 
-    <!-- Action buttons positioned at the bottom-right -->
     <div class="absolute bottom-4 right-4 space-x-2">
         <button onclick="openDeleteModal({{ $job->id }}, '{{ $job->title }}')" class="text-red-500 hover:text-red-700 text-sm">
             Delete Job
@@ -34,7 +32,6 @@
         </a>
     </div>
 
-    <!-- Delete Confirmation Modal Component with Dynamic Title -->
-    <x-delete-form :title="'Delete job: ' . $job->title" />
+    <x-delete-modal :title="'Delete job: ' . $job->title" />
 
 </x-panel>

@@ -23,7 +23,7 @@
     </div>
 
     @can('apply', $job)
-        <x-forms.button2 href="/apply/{{ $job->id }}" class="self-start mt-6 text-sm font-bold hover:text-gray-800 transition-colors duration-300">
+        <x-forms.button2 href="/apply/{{ $job->id }}" class="self-start mt-6 text-sm font-bold hover:text-gray-800 bg-blue-600 hover:bg-blue-800 transition-colors duration-300">
             Apply Now
         </x-forms.button2>
     @endcan
