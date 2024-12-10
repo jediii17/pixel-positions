@@ -21,6 +21,7 @@ class JobApplicationController extends Controller
 
         $applications = JobApplication::with('job')
             ->where('user_id', Auth::id())
+            ->latest()
             ->get();
 
         return view('member.appliedJobs', ['applications' => $applications]);
