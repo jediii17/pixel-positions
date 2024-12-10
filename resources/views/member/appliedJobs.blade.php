@@ -1,7 +1,7 @@
 <x-layout>
     <x-page-heading>Your Applied Jobs</x-page-heading>
 
-    <div class="space-y-4">
+    <div class="space-y-4 mt-8">
         @forelse ($applications as $application)
             <div class="p-4 border rounded shadow flex justify-between items-center">
                 <div>
