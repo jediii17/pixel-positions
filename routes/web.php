@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Home
-Route::get('/', [JobController::class, 'index']);
+Route::get('/', [JobController::class, 'index'])->name('home');
 
 // Employer
 Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth');

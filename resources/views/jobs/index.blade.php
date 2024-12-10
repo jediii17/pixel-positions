@@ -1,6 +1,15 @@
 <x-layout>
     <div class="space-y-10">
         <section class="text-center pt-6">
+
+            <x-forms.success class="mb-8">
+                {{ session('success') }}
+            </x-forms.success>
+                {{ session('error') }}
+            <x-forms.error>
+
+            </x-forms.error>
+
             <h1 class="font-bold text-4xl">Let's Find Your Next Job</h1>
 
             <x-forms.form action="/search" class="mt-6">
@@ -21,7 +30,7 @@
         <section>
             <x-section-heading>Tags</x-section-heading>
 
-            <div class="mt-6 space-x-1">
+            <div class="mt-6 flex flex-wrap gap-3">
                 @foreach($tags as $tag)
                     <x-tag :$tag />
                 @endforeach

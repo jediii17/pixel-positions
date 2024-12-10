@@ -41,24 +41,28 @@ class JobApplicationController extends Controller
      */
     public function store(Request $request, Job $job)
     {
+        try {
+            $validated = $request->validate([
+                'resume' => 'required|mimes:pdf,docx|max:10240',
+                'title' => 'required|string',
+                'company' => 'required|string',
+            ]);
 
-        $validated = $request->validate([
-            'resume' => 'required|mimes:pdf,docx|max:10240',
-            'title' => 'required|string',
-            'company' => 'required|string',
-        ]);
+            $resumePath = $request->file('resume')->store('resumes', 'public');
 
-        $resumePath = $request->file('resume')->store('resumes', 'public');
+            JobApplication::create([
+                'user_id' => Auth::id(),
+                'job_id' => $job->id,
+                'resume' => $resumePath,
+                'title' => $validated['title'],
+                'company' => $validated['company'],
+            ]);
 
-        JobApplication::create([
-            'user_id' => Auth::id(),
-            'job_id' => $job->id,
-            'resume' => $resumePath,
-            'title' => $validated['title'],
-            'company' => $validated['company'],
-        ]);
-
-        return redirect('/');
+            return redirect()->route('home')->with('success', 'Job application submitted successfully.');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('home')->with('error', 'Something went wrong. Please try again.');
+        }
     }
 
     public function updateStatus(Request $request, JobApplication $application)

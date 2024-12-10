@@ -1,5 +1,5 @@
 @if (session('success'))
-    <div class="rounded-lg bg-green-100 p-4 mt-3 text-green-700">
+    <div {{ $attributes(['class' => 'rounded-lg bg-green-100 p-4 text-green-700']) }}>
         {{ $slot }}
     </div>
 @endif
