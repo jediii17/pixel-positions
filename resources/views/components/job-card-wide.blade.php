@@ -16,6 +16,10 @@
         </h3>
 
         <p class="text-sm text-gray-400 mt-auto">{{ $job->salary }}</p>
+
+        <p class="text-sm text-gray-500 mt-2">
+            Posted {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+        </p>
     </div>
 
     <div>

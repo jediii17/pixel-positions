@@ -5,10 +5,6 @@
             <x-forms.success class="mb-8">
                 {{ session('success') }}
             </x-forms.success>
-                {{ session('error') }}
-            <x-forms.error>
-
-            </x-forms.error>
 
             <h1 class="font-bold text-4xl">Let's Find Your Next Job</h1>
 

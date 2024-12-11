@@ -45,6 +45,6 @@ class ProfileController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return Redirect::route('profile.edit')->with('success', 'Password changed successfully.');
+        return Redirect::route('profile.edit')->with('password_success', 'Password changed successfully.');
     }
 }

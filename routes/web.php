@@ -30,7 +30,8 @@ Route::patch('/job-applications/{application}/status', [JobApplicationController
     ->middleware('auth')->name('job-applications.status');
 Route::get('/apply/{job}', [JobApplicationController::class, 'create'])
     ->middleware('auth')
-    ->can('apply', 'job');
+    ->can('apply', 'job')
+    ->name('apply-jobs');
 Route::post('/apply/{job}/application', [JobApplicationController::class, 'store'])->middleware('auth');
 
 // All

@@ -10,6 +10,10 @@
             </a>
         </h3>
         <p class="text-sm mt-4">{{ $job->salary }}</p>
+
+        <p class="text-sm text-gray-500 mt-2">
+            Posted {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+        </p>
     </div>
 
     <div class="flex justify-between items-center mt-auto">
@@ -27,5 +31,4 @@
             Apply Now
         </x-forms.button2>
     @endcan
-   
 </x-panel>
