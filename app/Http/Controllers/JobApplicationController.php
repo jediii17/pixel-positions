@@ -62,7 +62,7 @@ class JobApplicationController extends Controller
             return redirect()->route('home')->with('success', 'Job application submitted successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('home')->with('error', 'Something went wrong. Please try again.');
+            return redirect()->route('')->with('error', 'Something went wrong. Please try again.');
         }
     }
 

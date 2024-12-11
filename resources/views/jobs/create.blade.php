@@ -16,11 +16,32 @@
 
         <x-forms.divider />
 
-        <x-forms.input label="Tags (comma separated)" name="tags" placeholder="laracasts, video, education" />
-        @error('tags')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+        <x-forms.input id="tags-input" label="Tags (comma separated)" name="tags" placeholder="Software, Developer, Associate"  />
 
         <x-forms.button>Publish</x-forms.button>
     </x-forms.form>
+
+    <script>
+        const tagsInput = document.getElementById('tags-input');
+        const errorContainer = document.createElement('div');
+        tagsInput.parentNode.appendChild(errorContainer);
+
+        tagsInput.addEventListener('input', function () {
+            errorContainer.textContent = ''; 
+
+            const tags = tagsInput.value.split(',').map(tag => tag.trim());
+
+            if (tags.length > 3) {
+                errorContainer.textContent = 'You can only add a maximum of 3 tags.';
+                errorContainer.classList.add('text-red-700', 'mt-2');
+                return;
+            }
+
+            const invalidTags = tags.filter(tag => tag.includes(' '));
+            if (invalidTags.length > 0) {
+                errorContainer.textContent = 'Tags must be a single word without spaces.';
+                errorContainer.classList.add('text-red-700', 'mt-2');
+            }
+        });
+    </script>
 </x-layout>

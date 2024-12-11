@@ -44,14 +44,17 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-
         $attributes = $request->validate([
             'title' => ['required'],
             'salary' => ['required'],
             'location' => ['required'],
             'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
             'url' => ['required', 'active_url'],
-            'tags' => ['nullable'],
+            'tags' => [
+                'nullable',
+                'regex:/^([a-zA-Z0-9]+(?:,[a-zA-Z0-9]+)*)?$/',
+                'max:255',
+            ],
         ]);
 
         $attributes['featured'] = $request->has('featured');
@@ -59,10 +62,9 @@ class JobController extends Controller
         try {
             $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
-
             if ($attributes['tags'] ?? false) {
                 foreach (explode(',', $attributes['tags']) as $tag) {
-                    $job->tag($tag);
+                    $job->tag(trim($tag));
                 }
             }
 
@@ -72,6 +74,7 @@ class JobController extends Controller
             return redirect()->back()->with('error', 'Failed to post the job. Please try again.');
         }
     }
+
 
 
     public function show()
