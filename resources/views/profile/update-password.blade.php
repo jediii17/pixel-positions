@@ -9,9 +9,7 @@
         @method('PATCH')
 
         <x-forms.input type="password" label="Current Password" name="current_password" required />
-
         <x-forms.input type="password" label="New Password" name="password" id="new-password" required />
-
         <x-forms.input type="password" label="Confirm Password" name="password_confirmation" id="confirm-password" required />
 
         <div id="password-error" class="text-sm text-red-600 mt-2 hidden">Passwords do not match.</div>
