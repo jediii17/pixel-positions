@@ -1,5 +1,6 @@
 <x-layout>
     <div class="space-y-10">
+        @if(Auth::check() && Auth::user()->role === 'member')
         <section class="text-center pt-6">
 
             <x-forms.success class="mb-8">
@@ -12,6 +13,7 @@
                 <x-forms.input :label="false" name="q" placeholder="Web Developer..." />
             </x-forms.form>
         </section>
+        @endif
 
         <section class="pt-10">
             <x-section-heading>Featured Jobs</x-section-heading>
