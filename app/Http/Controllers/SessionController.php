@@ -35,9 +35,6 @@ class SessionController extends Controller
         }
 
         if ($user->role === 'employer') {
-            // $employer = Auth::user()->employer;
-            // $jobs = $employer->jobs()->latest()->get();
-            // return view('jobs.show', compact('jobs'));
             return redirect()->route('jobs.view-applicants');
         }
     }
