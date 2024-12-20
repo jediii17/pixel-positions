@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
-    public function create()
+    public function index()
     {
         return view('auth.login');
     }
@@ -27,8 +28,20 @@ class SessionController extends Controller
 
         request()->session()->regenerate();
 
-        return redirect('/');
+        $user = Auth::user();
+
+        if ($user->role === 'member') {
+            return redirect('home');
+        }
+
+        if ($user->role === 'employer') {
+            // $employer = Auth::user()->employer;
+            // $jobs = $employer->jobs()->latest()->get();
+            // return view('jobs.show', compact('jobs'));
+            return redirect()->route('jobs.view-applicants');
+        }
     }
+
 
     public function destroy()
     {

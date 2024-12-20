@@ -10,7 +10,6 @@ use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 // Home
-Route::get('/', [JobController::class, 'index'])->name('home');
 
 // Employer
 Route::middleware('auth')->group(function () {
@@ -23,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 // Member
 Route::middleware('auth')->group(function () {
+    Route::get('/home', [JobController::class, 'index'])->name('home');
     Route::get('/jobs/applied', [JobApplicationController::class, 'show']);
     Route::patch('/job-applications/{application}/status', [JobApplicationController::class, 'updateStatus'])
         ->name('job-applications.status');
@@ -46,7 +46,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'create']);
     Route::post('/register', [RegisterController::class, 'store']);
 
-    Route::get('/login', [SessionController::class, 'create']);
+    Route::get('/', [SessionController::class, 'index']);
     Route::post('/login', [SessionController::class, 'store']);
 });
 

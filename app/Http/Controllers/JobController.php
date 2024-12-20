@@ -17,6 +17,10 @@ class JobController extends Controller
      */
     public function index()
     {
+        if (Auth::check() && Auth::user()->role === 'employer') {
+            abort(403, 'Unauthorized');
+        }
+
         $jobs = Job::latest()->with(['employer', 'tags'])->get()->groupBy('featured');
 
         return view('jobs.index', [

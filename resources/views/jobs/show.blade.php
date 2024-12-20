@@ -11,7 +11,7 @@
         </x-forms.error>
     </div>
     
-    <div class="space-y-6">
+    <div class="grid lg:grid-cols-3 gap-8 mt-6">
         @if($jobs->isEmpty())
             <div class="text-center text-gray-500">
                 <p class="text-lg font-semibold">You haven't posted any jobs yet.</p>

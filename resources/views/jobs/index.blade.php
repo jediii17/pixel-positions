@@ -1,18 +1,18 @@
 <x-layout>
     <div class="space-y-10">
         @if(Auth::check() && Auth::user()->role === 'member')
-        <section class="text-center pt-6">
+            <section class="text-center pt-6">
 
-            <x-forms.success class="mb-8">
-                {{ session('success') }}
-            </x-forms.success>
+                <x-forms.success class="mb-8">
+                    {{ session('success') }}
+                </x-forms.success>
 
-            <h1 class="font-bold text-4xl">Let's Find Your Next Job</h1>
+                <h1 class="font-bold text-4xl">Let's Find Your Next Job</h1>
 
-            <x-forms.form action="/search" class="mt-6">
-                <x-forms.input :label="false" name="q" placeholder="Web Developer..." />
-            </x-forms.form>
-        </section>
+                <x-forms.form action="/search" class="mt-6">
+                    <x-forms.input :label="false" name="q" placeholder="Web Developer..." />
+                </x-forms.form>
+            </section>
         @endif
 
         <section class="pt-10">
